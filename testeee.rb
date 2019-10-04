@@ -6,6 +6,10 @@ class TestCase
       puts 'NG'
     end
   end
+
+  def run
+    eval("test")
+  end
 end
 
 
@@ -13,14 +17,12 @@ class SuccessTestCase < TestCase
   def test
     assert_equal(5, 2 + 3)
   end
-  alias_method :run, :test
 end
 
 class FailureTestCase < TestCase
   def test
     assert_equal(6, 2 + 3)
   end
-  alias_method :run, :test
 end
 
 
