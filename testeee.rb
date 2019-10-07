@@ -8,7 +8,7 @@ class TestCase
   end
 
   def run
-    eval("test")
+    test
   end
 end
 
