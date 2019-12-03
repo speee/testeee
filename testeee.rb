@@ -23,9 +23,9 @@ class TestCase
   end
 
   def run
-    class_methods = self.class.instance_methods(false)
-    for i in class_methods do
-      eval i.to_s
+    instance_methods = self.class.instance_methods(false)
+    instance_methods.each do |i|
+      __send__(i)
     end
     #puts c.kind_of?(Array)
   end
