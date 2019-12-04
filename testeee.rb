@@ -23,7 +23,11 @@ class TestCase
   end
 
   def run
-    test
+    instance_methods = self.class.instance_methods(false)
+    instance_methods.each do |i|
+      __send__(i)
+    end
+    #puts c.kind_of?(Array)
   end
 end
 
@@ -40,10 +44,24 @@ class FailureTestCase < TestCase
   end
 end
 
+class CalcTestCase < TestCase
+  def test_add
+    assert_equal(5,2 + 3)
+  end
+
+  def test_subtract
+    assert_equal(-1,2 - 3)
+  end
+end
+
 
 if $0 == __FILE__
   success = SuccessTestCase.new
   success.run # -> "OK"
   failure = FailureTestCase.new
   failure.run # -> "NG
+
+  calc = CalcTestCase.new
+  calc.run
+
 end
